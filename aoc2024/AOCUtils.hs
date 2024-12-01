@@ -8,6 +8,8 @@ import Control.Monad (forM_)
 run :: Show b => [String] -> Parser a -> (a -> b) -> Int -> IO() 
 run inputFiles parser solve i = forM_ inputFiles $ doProblemsOnFile $ doProblem parser solve i 
 
+
+doProblemsOnFile :: (String -> [Char] -> IO b) -> [Char] -> IO b
 doProblemsOnFile doFunc fileName = do
     input <- readFile $ "data/"++fileName
     doFunc input fileName
