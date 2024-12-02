@@ -5,6 +5,6 @@ You can clearly see my improvement in coding, feel free to judge my first ones :
 
 # Stats
 - Total stars: 47*
-- [2024] 4*   (day 02)
-- [2023] 23*  (day 13)
-- [2022] 20*  (day 10)
+- [2024] 4*\t(day 02)
+- [2023] 23*\t(day 13)
+- [2022] 20*\t(day 10)
