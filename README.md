@@ -4,7 +4,7 @@ You can clearly see my improvement in coding, feel free to judge my first ones :
 - For the year 2024 I am using *Haskell*!
 
 # Stats
-- Total stars: 45*
-- [2024] 2*   (day 01)
+- Total stars: 47*
+- [2024] 4*   (day 02)
 - [2023] 23*  (day 13)
 - [2022] 20*  (day 10)
