@@ -10,7 +10,10 @@ inputFiles2 = inputFiles1
 main :: IO ()
 main = do
     run inputFiles1 parseInput solve1 1
-    -- run inputFiles2 parseInput solve2 2
+    run inputFiles2 parseInput2 solve2 2
+
+-- DATA TYPES / CLASSES --------------
+data Instr = Mul Int Int | Do | Dont deriving (Show, Eq)
 
 -- PARSING ----------------------------
 -- parseInput :: Parser String
@@ -33,12 +36,27 @@ parseInput = do
     maybePairs <- many mulOrCharP
     return $ catMaybes maybePairs
 
--- SOLUTION 1 -------------------------
+parseDo = string "do()" >> return Do
+parseDont = string "don't()" >> return Dont
 
+try' instr = try (Just <$> instr)
+
+instrP = try' (uncurry Mul <$> parseMul) <|> try' parseDo <|> try' parseDont <|> (anyChar >> return Nothing)
+
+parseInput2 = catMaybes <$> many instrP
+
+-- SOLUTION 1 -------------------------
 solve1 :: [(Int, Int)] -> Int
 solve1 = foldr (\c acc -> acc + uncurry (*) c) 0
 -- SOLUTION 2 -------------------------
--- solve2 :: [[Int]] -> Int
+solve2 :: [Instr] -> Int
+solve2 = snd . foldl eval (True, 0)
+
+eval :: (Bool, Int) -> Instr -> (Bool, Int)
+eval (_, sum) Do = (True, sum)
+eval (_, sum) Dont = (False, sum)
+eval (False, sum) (Mul _ _) = (False, sum)
+eval (True, sum) (Mul x y) = (True, sum + (x * y))
 
 -- NOT WORKING SOLUTION ---------------
 -- Doesn't work for some edge cases
@@ -66,7 +84,6 @@ solve1 = foldr (\c acc -> acc + uncurry (*) c) 0
 --         rmBrackets xs = split' (=='(') $ concat $ split' (==')') xs
 --         rmMul = filter (not . (`elem` "mul"))
 
--- unused since my first solution didn't work
 -- mul :: [Int] -> Int
 -- mul [] = 0                    
 -- mul [x] = x 
