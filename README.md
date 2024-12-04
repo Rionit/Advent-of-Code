@@ -4,7 +4,7 @@ You can clearly see my improvement in coding, feel free to judge my first ones :
 - For the year 2024 I am using *Haskell*!
 
 # Stats
-- Total stars: 47*
-- **[2024](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2022)** _(day 02)_: 4*
+- Total stars: 49*
+- **[2024](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2022)** _(day 02)_: 6*
 - **[2023](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2023)** _(day 13)_: 23*
 - **[2022](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2024)** _(day 10)_: 20*
