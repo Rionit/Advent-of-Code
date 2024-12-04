@@ -9,9 +9,7 @@ You can clearly see my improvement in coding, feel free to judge my first ones :
 - **[2023](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2023)** _(day 13)_: 23*
 - **[2022](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2024)** _(day 10)_: 20*
 
-  
-
--=[ Christmas tree ]=-
+```
                                                     |               _______      
                               *                     |               \  ___ `'. .----.     .----.   __.....__        _..._         
                                                     |        *       ' |--.\  \ \    \   /    /.-''         '.    .'     '.        
@@ -46,7 +44,7 @@ You can clearly see my improvement in coding, feel free to judge my first ones :
                                                     |       '. `._____.-'/             /_______.'/    `.             .'   
                                                     |         `-.______ /      *       \_______|/       `''-...... -'      
 
------------------------------------------------- 
+```
 Thank you for visiting https://asciiart.website/
 This ASCII pic can be found at
 https://asciiart.website/index.php?art=holiday/christmas/trees
