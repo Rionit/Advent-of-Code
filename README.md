@@ -45,7 +45,5 @@ You can clearly see my improvement in coding, feel free to judge my first ones :
                                                     `-.______ /      *       \_______|/       `''-...... -'      
 
 ```
-This ASCII pic and text can be found at
-https://asciiart.website/index.php?art=holiday/christmas/trees
-https://patorjk.com/software/taag/#p=display&f=Crazy&t=Advent%0Aof%0ACode
-
+---
+ASCII [pic](https://asciiart.website/index.php?art=holiday/christmas/trees) and [text](https://patorjk.com/software/taag/#p=display&f=Crazy&t=Advent%0Aof%0ACode)
