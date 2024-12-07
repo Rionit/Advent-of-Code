@@ -3,8 +3,8 @@ My solutions for Advent of Code, currently for years 2021-2024.
 - For the year 2024 I am using *Haskell*!
 
 # Stats
-- Total stars: 49*
-- **[2024](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2022)** _(day 03)_: 6*
+- Total stars: 57*
+- **[2024](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2022)** _(day 07)_: 14*
 - **[2023](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2023)** _(day 13)_: 23*
 - **[2022](https://github.com/Rionit/Advent-of-Code/tree/main/aoc2024)** _(day 10)_: 20*
 
