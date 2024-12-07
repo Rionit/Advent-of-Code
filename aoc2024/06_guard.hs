@@ -9,12 +9,12 @@ inputFiles2 = inputFiles1
 
 main :: IO ()
 main = do
-    run inputFiles1 parseInput solve1 1
-    -- run inputFiles2 parseInput solve2 2
+    -- run inputFiles1 parseInput solve1 1
+    run inputFiles2 parseInput solve2 2
 
 -- DATA TYPES / CLASSES --------------
 data Player = Player Int Int Char deriving (Show)
-
+data Step = Step Int Int Char deriving (Show, Eq)
 -- PARSING ----------------------------
 
 parseInput :: Parser String
@@ -27,7 +27,11 @@ solve1 input = length $ group $ sort $ eval player board [pos player]
         board = lines input
         
 -- SOLUTION 2 -------------------------
-solve2 = undefined
+solve2 input = length $ filter (== True) $ map (\p -> eval2 player board [] (head p)) path
+    where
+        path = group $ sort $ eval player board [pos player]
+        player = findPlayer board
+        board = lines input
 -- UTILS ------------------------------
 escaped (0, _) _ = True
 escaped (_, 0) _ = True
@@ -55,6 +59,15 @@ eval player board path | escaped (pos player) board = path
                        | field pos' board == '#' = eval (rot player) board path
     where
         pos' = pos $ move player
+
+-- eval2 :: Player -> [String] -> [Step] -> (Int, Int) -> Bool
+eval2 p@(Player x y dir) board path obstr
+        | escaped (pos p) board = False
+        | (Step x y dir) `elem` path = True
+        | pos' /= obstr && field pos' board /= '#' = eval2 (move p) board ([(Step x y dir)]++path) obstr
+        | otherwise = eval2 (rot p) board path obstr
+    where
+        pos' = pos $ move p
 
 findPlayer :: [String] -> Player
 findPlayer board = Player x y '^'
