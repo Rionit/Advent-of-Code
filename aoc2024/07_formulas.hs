@@ -42,9 +42,9 @@ op x '+' y = x + y
 op x '|' y = x `join` y
 
 join :: Int -> Int -> Int
-join x y = read ((show x) ++ (show y))
+join x y = read (show x ++ show y)
 
 eval :: [Int] -> [Int] -> Int -> String -> Int
 eval [] _ test _ = 0
-eval xs [] test _ = if any (== test) xs then test else 0
+eval xs [] test _ = if test `elem` xs then test else 0
 eval xs (y:ys) test ops = eval [result | x <- xs, o <- ops, let result = op x o y, result <= test] ys test ops
