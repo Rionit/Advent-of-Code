@@ -25,9 +25,9 @@ solve1 input = length $ group $ sort $ eval player board [pos player]
     where
         player = findPlayer board
         board = lines input
-        
+
 -- SOLUTION 2 -------------------------
-solve2 input = length $ filter (== True) $ map (\p -> eval2 player board [] (head p)) path
+solve2 input = length $ filter (== True) $ map (eval2 player board [] . head) path
     where
         path = group $ sort $ eval player board [pos player]
         player = findPlayer board
@@ -35,21 +35,21 @@ solve2 input = length $ filter (== True) $ map (\p -> eval2 player board [] (hea
 -- UTILS ------------------------------
 escaped (0, _) _ = True
 escaped (_, 0) _ = True
-escaped (x, y) board | y >= (length board) - 1 = True
-                     | x >= (length $ head board) - 1 = True
+escaped (x, y) board | y >= length board - 1 = True
+                     | x >= length (head board) - 1 = True
                      | otherwise = False
 
 field (x, y) board = (board !! y) !! x
 
-move (Player x y dir@'^') = (Player x (y-1) dir)
-move (Player x y dir@'v') = (Player x (y+1) dir)
-move (Player x y dir@'>') = (Player (x+1) y dir)
-move (Player x y dir@'<') = (Player (x-1) y dir)
+move (Player x y dir@'^') = Player x (y-1) dir
+move (Player x y dir@'v') = Player x (y+1) dir
+move (Player x y dir@'>') = Player (x+1) y dir
+move (Player x y dir@'<') = Player (x-1) y dir
 
-rot (Player x y '^') = (Player x y '>')
-rot (Player x y '>') = (Player x y 'v')
-rot (Player x y 'v') = (Player x y '<')
-rot (Player x y '<') = (Player x y '^')
+rot (Player x y '^') = Player x y '>'
+rot (Player x y '>') = Player x y 'v'
+rot (Player x y 'v') = Player x y '<'
+rot (Player x y '<') = Player x y '^'
 
 pos (Player x y _) = (x, y)
 
@@ -63,8 +63,8 @@ eval player board path | escaped (pos player) board = path
 -- eval2 :: Player -> [String] -> [Step] -> (Int, Int) -> Bool
 eval2 p@(Player x y dir) board path obstr
         | escaped (pos p) board = False
-        | (Step x y dir) `elem` path = True
-        | pos' /= obstr && field pos' board /= '#' = eval2 (move p) board ([(Step x y dir)]++path) obstr
+        | Step x y dir `elem` path = True
+        | pos' /= obstr && field pos' board /= '#' = eval2 (move p) board (Step x y dir : path) obstr
         | otherwise = eval2 (rot p) board path obstr
     where
         pos' = pos $ move p
