@@ -10,7 +10,7 @@ inputFiles2 = inputFiles1
 main :: IO ()
 main = do
     run inputFiles1 parseInput solve1 1
-    -- run inputFiles2 parseInput solve2 2
+    run inputFiles2 parseInput solve2 2
 
 -- DATA TYPES / CLASSES ---------------
 
@@ -36,13 +36,20 @@ parseInput = do
 
 -- SOLUTION 1 -------------------------
 solve1 :: (Int, Int, [(Char, (Int, Int))]) -> Int
-solve1 (rows, cols, antennas) = length . group . sort $ concatMap (filter bounds . antinodes) $ grouped antennas
+solve1 = solve 1 1
+-- SOLUTION 2 -------------------------
+solve2 :: (Int, Int, [(Char, (Int, Int))]) -> Int
+solve2 = solve 0 50
+
+solve :: Int -> Int -> (Int, Int, [(Char, (Int, Int))]) -> Int
+solve m n (rows, cols, antennas) = length $ group $ sort $ concatMap (filter bounds . antinodes m n) $ grouped antennas
     where
         grouped = map (map snd) . groupBy ((==) `on` fst) . sort
-        bounds (x, y) = x `elem` [0 .. cols] && y `elem` [0 .. rows]
--- SOLUTION 2 -------------------------
-solve2 input = input
+        bounds (x, y) = x `elem` [0..cols] && y `elem` [0..rows]
 -- UTILS ------------------------------
-antinodes xs = concatMap (\((x1, y1), (x2, y2)) -> [(2*x1 - x2, 2*y1 - y2), (2*x2 - x1, 2*y2 - y1)]) pairs
+antinodes m n xs = concatMap (\pair -> concatMap (harmonics pair) [m..n]) pairs
   where
     pairs = [(x, y) | (x:ys) <- tails xs, y <- ys]
+    harmonics ((x1, y1), (x2, y2)) i = [(x1 - i * dirX, y1 - i * dirY), (x2 + i * dirX, y2 + i * dirY)]
+        where
+            (dirX, dirY) = (x2 - x1, y2 - y1)
